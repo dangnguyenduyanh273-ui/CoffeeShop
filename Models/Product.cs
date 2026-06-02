@@ -9,7 +9,4 @@
         public decimal Price { get; set; }
         public bool IsTrendingProduct { get; set; }
     }
- 
-
 }
-

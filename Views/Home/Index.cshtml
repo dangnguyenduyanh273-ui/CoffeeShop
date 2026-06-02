@@ -1,8 +1,37 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<CoffeeShop.Models.Product>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section data-bs-version="5.1" class="header18 cid-tsEQyIZRcx mbr-fullscreen mbr-parallax-background" id="header18-1">
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(0, 0, 0);"></div>
+    <div class="align-center container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-3 display-1">
+                    <strong>The daily grind coffee house</strong>
+                </h1>
+                <p class="mbr-text mbr-fonts-style mbr-white display-7">
+                    Where every cup is a fresh brew of perfection
+                </p>
+                <div class="mbr-section-btn mt-3">
+                    <a asp-controller="Products" asp-action="Shop"
+                       class="btn btn-primary display-4">
+                        Shop now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content2 cid-tsEZVFGbrL" id="content2-g">
+    <div class="container">
+        <div class="mbr-section-head">
+            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Top Selling</strong>
+            </h4>
+            <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">
+                Make your mornings better with our top-selling product.
+            </h5>
+        </div>
+        <partial name="_Product" model="Model" />
+    </div>
+</section>
