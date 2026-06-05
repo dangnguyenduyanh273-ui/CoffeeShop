@@ -1,0 +1,87 @@
+﻿@model List<CoffeeShop.Models.Order>
+
+<style>
+    .list-orders * {
+        font-family: 'Jost', sans-serif !important;
+    }
+
+    .order-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    th {
+        font-weight: 700;
+        color: #555;
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+</style>
+
+<div class="container list-orders" style="padding: 50px 0;">
+    <h2 style="font-size:36px; font-weight:300; margin-bottom:30px;">
+        List your orders
+    </h2>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="text-center py-5">
+            <p style="color:#888;">You have no orders yet.</p>
+            <a asp-controller="Products" asp-action="Shop" class="btn btn-primary">
+                Start Shopping
+            </a>
+        </div>
+    }
+    else
+    {
+        <table class="table table-borderless">
+            <thead>
+                <tr style="border-bottom: 2px solid #eee;">
+                    <th>Stt</th>
+                    <th>Time order</th>
+                    <th>Detail</th>
+                    <th>Shipping Address</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int stt = 1;
+                }
+                @foreach (var order in Model)
+                {
+                    <tr style="border-bottom:1px solid #f0f0f0; vertical-align:middle;">
+                        <td>@stt</td>
+                        <td style="color:#666; font-size:14px;">
+                            @order.OrderPlaced.ToString("dd/MM/yyyy h:mm:ss tt")
+                        </td>
+                        <td>
+                            @if (order.OrderDetails != null)
+                            {
+                                @foreach (var detail in order.OrderDetails)
+                                {
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        @if (detail.Product != null)
+                                        {
+                                            <img src="@detail.Product.ImageUrl" class="order-img" />
+                                            <span style="font-size:14px;">
+                                                @detail.Quantity x @detail.Product.Name x @detail.Price.ToString("0.00")
+                                            </span>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </td>
+                        <td style="font-size:14px; color:#666;">@order.Address</td>
+                        <td style="font-weight:600;">@order.OrderTotal.ToString("0.00")</td>
+                        <td><span style="color:#888; font-size:14px;">Success</span></td>
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -3,5 +3,6 @@
     public interface IOrderRepository
     {
         void PlaceOrder(Order order);
+        List<Order> GetOrdersByUser(string? userId);
     }
 }
